@@ -13,6 +13,8 @@
 		C060EBA91AC501D800ABD537 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C060EBA81AC501D800ABD537 /* Images.xcassets */; };
 		C060EBAC1AC501D800ABD537 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C060EBAA1AC501D800ABD537 /* LaunchScreen.xib */; };
 		C060EBB81AC501D800ABD537 /* carService2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060EBB71AC501D800ABD537 /* carService2Tests.swift */; };
+		C060EBC41AC5028300ABD537 /* ytcpsocket.c in Sources */ = {isa = PBXBuildFile; fileRef = C060EBC21AC5028300ABD537 /* ytcpsocket.c */; };
+		C060EBC51AC5028300ABD537 /* ytcpsocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C060EBC31AC5028300ABD537 /* ytcpsocket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,9 @@
 		C060EBB11AC501D800ABD537 /* carService2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = carService2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C060EBB61AC501D800ABD537 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C060EBB71AC501D800ABD537 /* carService2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = carService2Tests.swift; sourceTree = "<group>"; };
+		C060EBC11AC5028200ABD537 /* carService2-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "carService2-Bridging-Header.h"; sourceTree = "<group>"; };
+		C060EBC21AC5028300ABD537 /* ytcpsocket.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ytcpsocket.c; sourceTree = "<group>"; };
+		C060EBC31AC5028300ABD537 /* ytcpsocket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ytcpsocket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +84,13 @@
 			children = (
 				C060EBA11AC501D800ABD537 /* AppDelegate.swift */,
 				C060EBA31AC501D800ABD537 /* ViewController.swift */,
+				C060EBC21AC5028300ABD537 /* ytcpsocket.c */,
+				C060EBC31AC5028300ABD537 /* ytcpsocket.swift */,
 				C060EBA51AC501D800ABD537 /* Main.storyboard */,
 				C060EBA81AC501D800ABD537 /* Images.xcassets */,
 				C060EBAA1AC501D800ABD537 /* LaunchScreen.xib */,
 				C060EB9F1AC501D800ABD537 /* Supporting Files */,
+				C060EBC11AC5028200ABD537 /* carService2-Bridging-Header.h */,
 			);
 			path = carService2;
 			sourceTree = "<group>";
@@ -212,7 +220,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C060EBC51AC5028300ABD537 /* ytcpsocket.swift in Sources */,
 				C060EBA41AC501D800ABD537 /* ViewController.swift in Sources */,
+				C060EBC41AC5028300ABD537 /* ytcpsocket.c in Sources */,
 				C060EBA21AC501D800ABD537 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,9 +348,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = carService2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "carService2/carService2-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -348,9 +362,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = carService2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "carService2/carService2-Bridging-Header.h";
 			};
 			name = Release;
 		};
