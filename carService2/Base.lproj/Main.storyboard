@@ -35,6 +35,7 @@
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="x"/>
                                 <connections>
+                                    <action selector="down:" destination="BYZ-38-t0r" eventType="touchDown" id="PkN-5o-osN"/>
                                     <action selector="sendCMD:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5ol-KL-CVl"/>
                                 </connections>
                             </button>
@@ -44,6 +45,7 @@
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="d"/>
                                 <connections>
+                                    <action selector="down:" destination="BYZ-38-t0r" eventType="touchDown" id="6SI-dg-IaL"/>
                                     <action selector="sendCMD:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0df-9V-eW8"/>
                                 </connections>
                             </button>
@@ -53,6 +55,7 @@
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="a"/>
                                 <connections>
+                                    <action selector="down:" destination="BYZ-38-t0r" eventType="touchDown" id="knP-Ue-cGx"/>
                                     <action selector="sendCMD:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3L5-IV-TXn"/>
                                 </connections>
                             </button>
@@ -62,6 +65,7 @@
                                 <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="s"/>
                                 <connections>
+                                    <action selector="down:" destination="BYZ-38-t0r" eventType="touchDown" id="3vr-FM-x7h"/>
                                     <action selector="sendCMD:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5C2-CB-gKJ"/>
                                 </connections>
                             </button>
@@ -71,14 +75,23 @@
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="w"/>
                                 <connections>
+                                    <action selector="down:" destination="BYZ-38-t0r" eventType="touchDown" id="FkZ-uO-9ev"/>
                                     <action selector="sendCMD:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BF0-bu-FHK"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bdt-fM-ocp">
+                                <rect key="frame" x="20" y="425" width="280" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="label" destination="fN0-iN-FTf" id="J6O-fA-qh0"/>
+                        <outlet property="positionlabel" destination="bdt-fM-ocp" id="6Sl-nq-Cre"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -7,12 +7,28 @@
 //
 
 import UIKit
+import CoreLocation
+import CoreMotion
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, CLLocationManagerDelegate {
+    let locationManager = CLLocationManager()
+    let motionManager = CMMotionManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.delegate=self
+        locationManager.requestAlwaysAuthorization()
+        
+        if motionManager.deviceMotionAvailable {
+            motionManager.deviceMotionUpdateInterval = 0.01
+            motionManager.startDeviceMotionUpdates()
+            println("开始方向检测")
+        }else {
+            UIAlertView(title: "提示", message: "不支持方向的设备", delegate: nil, cancelButtonTitle: "确定").show()
+            println("不支持方向的设备")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,7 +41,7 @@ class ViewController: UIViewController {
         println(str)
     }
     
-    var client = TCPClient(addr: "10.10.100.254", port: 8899)
+    var client = TCPClient(addr: "192.168.1.1", port: 8899)
     
     @IBOutlet weak var label: UILabel!
     @IBAction func click(sender: AnyObject) {
@@ -41,19 +57,71 @@ class ViewController: UIViewController {
         }
     }
     
+    class mypoint{
+        var x:Double = 0.0
+        var y:Double = 0.0
+        init(xx:Double, yy:Double){
+            x=xx;
+            y=yy;
+        }
+        func add(deltax:Double, deltay:Double){
+            x += deltax;
+            y += deltay;
+        }
+        func toString()->String{
+            return "x=\(x)\ny=\(y)"
+        }
+    }
+    
+    var position = mypoint(xx: 0, yy: 0)
+    
+    @IBOutlet weak var positionlabel: UILabel!
+    
     func readThread(){
         while true{
             var rec = read()
             ui({
                 self.label.text = rec
+                var rec2 = rec as NSString
+                let indexr = rec2.rangeOfString("\r").location
+                if  indexr != 9223372036854775807{
+                    rec = rec2.substringToIndex(indexr)
+                    var add = rec.toInt()
+                    //                rec = rec.stringByReplacingOccurrencesOfString("\n", withString: "")
+                    //                rec = rec.stringByReplacingOccurrencesOfString("\r", withString: "")
+                    //                var add = rec.toInt()
+                    
+                    if let d = self.motionManager.deviceMotion.attitude{
+                        var yaw = d.yaw
+                        if add != nil {
+                            var xx = -sin(yaw)*Double(add!)
+                            var yy = cos(yaw)*Double(add!)
+                            self.position.add(xx, deltay: yy)
+                            self.positionlabel.text = self.position.toString()
+                        }
+                        else{
+                            println("[\(rec)]")
+                        }
+                    }
+                }
             })
         }
     }
     
     @IBAction func sendCMD(sender: AnyObject) {
+//        if let cmd = (sender as UIButton).titleLabel?.text{
+//            send(cmd)
+//        }
+        send(" ")
+        println("up")
+    }
+    
+    
+    @IBAction func down(sender: AnyObject) {
         if let cmd = (sender as UIButton).titleLabel?.text{
             send(cmd)
         }
+        println("down")
     }
     
     
@@ -62,8 +130,6 @@ class ViewController: UIViewController {
         if let re = client.read(1024*10){
             if let str = byteToString(re){
                 asdsa = str
-            }else{
-                asdsa = t(re)
             }
             println("获取数据成功:\(asdsa)")
         }
@@ -80,28 +146,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func t(buf:[Byte])->String{
-        var re = ""
-        for b in buf{
-            re+=bts(b)+" "
-        }
-        re+=" 长度:\(buf.count)"
-        return re
-    }
-    
-    func bts(b:Byte)->String{
-        var table = ["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"]
-        return "\(table[Int(b/16)])\(table[Int(b%16)])"
-    }
-    
     func byteToString(buf:[Byte])->String?{
         return NSString(bytes: buf, length: buf.count, encoding: NSUTF8StringEncoding)
-    }
-    
-    func show(show:String){
-        ui({
-            UIAlertView(title: "", message: show, delegate: nil, cancelButtonTitle: "确定").show()
-        })
     }
     
     func xiancheng(code:dispatch_block_t){
