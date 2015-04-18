@@ -113,14 +113,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 //        if let cmd = (sender as UIButton).titleLabel?.text{
 //            send(cmd)
 //        }
-        send(" ")
+        send("x")
         println("up")
     }
     
     
     @IBAction func down(sender: AnyObject) {
-        if let cmd = (sender as UIButton).titleLabel?.text{
+        if let cmd = (sender as! UIButton).titleLabel?.text{
             send(cmd)
+            if (
+                cmd == "a") || (cmd == "d"){
+                self.send("w")
+            }
         }
         println("down")
     }
@@ -147,8 +151,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    func byteToString(buf:[Byte])->String?{
-        return NSString(bytes: buf, length: buf.count, encoding: NSUTF8StringEncoding)
+    func byteToString(buf:[UInt8])->String?{
+        return NSString(bytes: buf, length: buf.count, encoding: NSUTF8StringEncoding) as? String
     }
     
     func xiancheng(code:dispatch_block_t){
@@ -158,5 +162,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         dispatch_async(dispatch_get_main_queue(), code)
     }
 
+    @IBAction func clear(sender: AnyObject) {
+        position.x = 0
+        position.y = 0
+        
+    }
 }
 
